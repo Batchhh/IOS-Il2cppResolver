@@ -42,10 +42,11 @@
     #define IL2CPP_FRAMEWORK_NAME "UnityFramework"
 #endif
 
-
+#include "Config.h"
 #include "Defines.hpp"
 
-#include "Utils/MemoryInfo.h"
+#include "Utils/MemoryInfo.hpp"
+
 
 // Vector2, Vector3 && Quaternion
 #include "Vector2.hpp"
