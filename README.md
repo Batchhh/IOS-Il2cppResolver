@@ -36,6 +36,8 @@ IL2CPP::Initialize(true, WAIT_TIME_SEC, IL2CPP_FRAMEWORK(BINARY_NAME) // This ne
 IL2CPP::Initialize(false, WAIT_TIME_SEC, IL2CPP_FRAMEWORK(BINARY_NAME) // This will not wait for the module. 
 ```
 
+For more usage check the [wiki](https://github.com/Batchhh/IOS-Il2cppResolver/wiki/Start-here!)
+
 ## Authors
 
 - [@sneakyevil](https://www.github.com/sneakyevil) Base source
