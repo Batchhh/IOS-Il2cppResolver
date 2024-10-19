@@ -11,7 +11,7 @@ Change in Config.h
 `WAIT_TIME_SEC` 
 
 ## Example usage
-
+#### This need to be added in your tweak.xm!
 ```c
 static inline const char* IL2CPP_FRAMEWORK(const char* NAME) {
         NSString *appPath = [[NSBundle mainBundle] bundlePath];
