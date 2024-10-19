@@ -1,30 +1,47 @@
-IL2CPP Resolver
+# IOS-IL2CPP Resolver
 A run-time API resolver for IL2CPP Unity.
 
-External Version(Rework WIP) | (Old) Pre-HeaderOnly Version
 
-Quick Example
-#include <IL2CPP_Resolver.hpp>
+## Environment Variables
 
-void SomeFunction()
-{
-    IL2CPP::Initialize(); // This needs to be called once!
+Change in Config.h
 
-    Unity::CGameObject* m_Local = Unity::GameObject::Find("LocalPlayer");
-    Unity::CComponent* m_LocalData = m_Local->GetComponent("PlayerData");
-    m_LocalData->SetMemberValue<bool>("CanFly", true);
-}
-Registering OnUpdate Callback
-void OurUpdateFunction()
-{
-    // Your special code...
-}
+`BINARY_NAME` to target the right file! Default is "UnityFramework"
 
-void OnLoad()
-{
-    IL2CPP::Initialize();
+`WAIT_TIME_SEC` 
 
-    IL2CPP::Callback::Initialize();
-    IL2CPP::Callback::OnUpdate::Add(OurUpdateFunction);
-}
-More: https://sneakyevil.gitbook.io/il2cpp-resolver/
+## Example usage
+
+```c
+static inline const char* IL2CPP_FRAMEWORK(const char* NAME) {
+        NSString *appPath = [[NSBundle mainBundle] bundlePath];
+        NSString *binaryPath = [NSString stringWithFormat:@"%s", NAME];
+        if ([binaryPath isEqualToString:@"UnityFramework"])
+        {
+            binaryPath = [appPath stringByAppendingPathComponent:@"Frameworks/UnityFramework.framework/UnityFramework"];
+        }
+        else
+        {
+            binaryPath = [appPath stringByAppendingPathComponent:binaryPath];
+        }
+        return [binaryPath UTF8String];
+    }
+```
+### INIT (IMPORTANT)
+```c
+#include "IL2CPP_Resolver.hpp"
+
+IL2CPP::Initialize(true, WAIT_TIME_SEC, IL2CPP_FRAMEWORK(BINARY_NAME) // This needs to be called once!
+
+IL2CPP::Initialize(false, WAIT_TIME_SEC, IL2CPP_FRAMEWORK(BINARY_NAME) // This will not wait for the module. 
+```
+
+## Authors
+
+- [@sneakyevil](https://www.github.com/sneakyevil) Base source
+- [@Batchh](https://www.github.com/Batchhh) Modified and adapted for IOS usage
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
