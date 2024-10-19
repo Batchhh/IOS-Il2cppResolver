@@ -57,7 +57,7 @@ namespace IL2CPP
                 return Ret();
             }
 
-            void *methodPointer = IL2CPP::Class::Utils::GetMethodPointerRVA(il2cppClass, methodName.c_str(), sizeof...(args));
+            uint64_t methodPointer = IL2CPP::Class::Utils::GetMethodPointerRVA(il2cppClass, methodName.c_str(), sizeof...(args));
             if (!methodPointer)
             {
                 std::cerr << "Method " << methodName << " not found in class " << className << ".\n";
