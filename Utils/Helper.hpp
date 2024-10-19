@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#define HOOKfunction(offset, ptr, orig) MSHookFunction((void *)getRealOffset(offset), (void *)ptr, (void **)&orig)
+
 namespace IL2CPP
 {
     namespace Helper
@@ -42,7 +44,7 @@ namespace IL2CPP
                 return;
             }
 
-            HOOK(methodOffset, hookedFunction, originalFunction);
+            HOOKfunction(methodOffset, hookedFunction, originalFunction);
         }
 
         template <typename Ret, typename... Args>
