@@ -3,8 +3,6 @@
 #include <iostream>
 #include <string>
 
-#define HOOKfunction(offset, ptr, orig) MSHookFunction((void *)getRealOffset(offset), (void *)ptr, (void **)&orig)
-
 namespace IL2CPP
 {
     namespace Helper
@@ -24,27 +22,6 @@ namespace IL2CPP
             }
 
             return nullptr;
-        }
-
-        template <typename Ret, typename... Args>
-        void HookStaticMethod(const std::string &className, const std::string &methodName, int argsCount, Ret (*hookedFunction)(Args...), Ret (*originalFunction)(Args...)) 
-        {
-
-            auto il2cppClass = IL2CPP::Class::Find(className.c_str());
-            if (!il2cppClass)
-            {
-                std::cerr << "Class " << className << " not found.\n";
-                return;
-            }
-
-            uint64_t methodOffset = IL2CPP::Class::Utils::GetMethodPointerRVA(il2cppClass, methodName.c_str(), argsCount);
-            if (!methodOffset)
-            {
-                std::cerr << "Method " << methodName << " not found in class " << className << ".\n";
-                return;
-            }
-
-            HOOKfunction(methodOffset, hookedFunction, originalFunction);
         }
 
         template <typename Ret, typename... Args>
