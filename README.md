@@ -1,4 +1,7 @@
 # IOS-IL2CPP Resolver
+
+This repo has been archived and wll not be updated. You are free to fork and update it :) 
+
 A run-time API resolver for IL2CPP Unity.
 
 
